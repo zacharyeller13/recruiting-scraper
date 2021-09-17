@@ -1,1 +1,1 @@
-# recruting-scraper
+# recruiting-scraper
