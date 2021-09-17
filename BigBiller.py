@@ -8,12 +8,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
-# from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-# from webdriver_manager.chrome import ChromeDriverManager
-# from webdriver_manager.utils import ChromeType
 
 from datetime import date
 import pandas as pd
@@ -27,16 +24,11 @@ today = date.today()
 # set working directory
 os.chdir('C:/Users/zacharye/Documents/PythonScripts/recruiting-scraper')
 
-# login information; needs to be taken out of code if possible
+# login information; using keyring to avoid hard coding username and password
 credentials = keyring.get_credential("BigBiller", None)
 username = credentials.username
 password = credentials.password
 website = 'https://bigbiller.topechelon.com/login'
-
-#options
-#chrome_options = Options()
-#chrome_options.add_argument('--headless')
-#chrome_options.binary_location = 'C:/Program Files/Chromium/chrome.exe'
 
 # set profile for downloads
 profile = webdriver.FirefoxProfile()
@@ -52,12 +44,6 @@ profile.update_preferences()
 # set headless option
 opts = Options()
 opts.add_argument('--headless')
-
-# start webdriver and access website
-# driver = webdriver.Chrome(executable_path='C:/Users/zacharye/AppData/Local/Programs/Python/Python38/chromedriver.exe')
-# driver = webdriver.Chrome(options=chrome_options)
-# driver.implicitly_wait(15)
-# driver.get(website)
 
 # webdriver with profile, headless option, and website
 driver = webdriver.Firefox(firefox_profile=profile, options=opts)
